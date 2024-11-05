@@ -1,20 +1,20 @@
 import math
 
-# Constants for players
+
 X = 'X'
 O = 'O'
 EMPTY = ' '
 
-# Helper function to print the Tic-Tac-Toe board
+
 def print_board(board):
     for row in range(3):
         print(' | '.join(board[row]))
         if row < 2:
             print('---------')
 
-# Check for a win condition
+
 def check_winner(board, player):
-    # Check rows, columns and diagonals
+
     for i in range(3):
         if all(board[i][j] == player for j in range(3)) or \
            all(board[j][i] == player for j in range(3)):
@@ -24,19 +24,19 @@ def check_winner(board, player):
         return True
     return False
 
-# Check if the board is full
+
 def is_full(board):
     return all(board[row][col] != EMPTY for row in range(3) for col in range(3))
 
-# Check for a draw (no winner and board is full)
+
 def is_draw(board):
     return is_full(board) and not (check_winner(board, X) or check_winner(board, O))
 
-# Get all possible moves for the current player
+
 def get_valid_moves(board):
     return [(row, col) for row in range(3) for col in range(3) if board[row][col] == EMPTY]
 
-# Minimax algorithm with alpha-beta pruning
+
 def minimax_alpha_beta(board, depth, alpha, beta, is_maximizing, player):
     if check_winner(board, X):
         return 10 - depth
@@ -45,7 +45,7 @@ def minimax_alpha_beta(board, depth, alpha, beta, is_maximizing, player):
     if is_draw(board):
         return 0
 
-    if is_maximizing:  # Maximizing for X
+    if is_maximizing: 
         max_eval = -math.inf
         for (row, col) in get_valid_moves(board):
             board[row][col] = X
@@ -53,10 +53,10 @@ def minimax_alpha_beta(board, depth, alpha, beta, is_maximizing, player):
             board[row][col] = EMPTY
             max_eval = max(max_eval, eval)
             alpha = max(alpha, eval)
-            if beta <= alpha:  # Beta cutoff
+            if beta <= alpha:  
                 break
         return max_eval
-    else:  # Minimizing for O
+    else:  
         min_eval = math.inf
         for (row, col) in get_valid_moves(board):
             board[row][col] = O
@@ -64,11 +64,11 @@ def minimax_alpha_beta(board, depth, alpha, beta, is_maximizing, player):
             board[row][col] = EMPTY
             min_eval = min(min_eval, eval)
             beta = min(beta, eval)
-            if beta <= alpha:  # Alpha cutoff
+            if beta <= alpha: 
                 break
         return min_eval
 
-# Find the best move for the current player
+
 def best_move(board, player):
     best_score = -math.inf if player == X else math.inf
     move = None
@@ -81,14 +81,14 @@ def best_move(board, player):
             move = (row, col)
     return move
 
-# Main Tic-Tac-Toe game loop
+
 def play_tic_tac_toe():
     board = [[EMPTY for _ in range(3)] for _ in range(3)]
     print("Tic-Tac-Toe Game!")
     print_board(board)
 
     while True:
-        # X's move (AI)
+      
         print("\nX's Move (AI):")
         move = best_move(board, X)
         if move:
@@ -101,7 +101,7 @@ def play_tic_tac_toe():
             print("It's a draw!")
             break
 
-        # O's move (Player)
+       
         print("\nO's Move (Player):")
         valid_moves = get_valid_moves(board)
         if not valid_moves:

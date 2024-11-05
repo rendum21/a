@@ -1,5 +1,3 @@
-
-#  implementation for solving the N-Queens problem using backtracking
 def is_safe(board, row, col, n):
     for i in range(col):
         if board[row][i] == 1:
@@ -29,7 +27,7 @@ def solve_n_queens(n):
         return "Solution does not exist"
     return board
 
-# Example usage:
+
 n = 5
 solution = solve_n_queens(n)
 for row in solution:

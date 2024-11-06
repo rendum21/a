@@ -11,6 +11,8 @@ https://www.oracle.com/in/database/technologies/xe-downloads.html
 	4) Enter user-name as system and password which you set while doing installation process.
 	
 	5) Create two tables named Borrower and fine.
+
+         set serveroutput on;
 	
 	 CREATE TABLE Borrower (
 	         Roll_no NUMBER PRIMARY KEY,

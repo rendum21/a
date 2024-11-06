@@ -1,0 +1,51 @@
+*DBMS *
+Steps for Oracle Installation and Performing DBMS Practical no. 4
+
+	1) Install Oracle for Windows by using the following link : 
+https://www.oracle.com/in/database/technologies/xe-downloads.html 
+
+	2) Then Complete the Installation Process.
+	
+	3) Once Installation is done, Just search for SQL plus in your PC and open it. 
+	
+	4) Enter user-name as system and password which you set while doing installation process.
+	
+	5) Create two tables named Borrower and fine.
+	
+	 CREATE TABLE Borrower (
+	         Roll_no NUMBER PRIMARY KEY,
+	         Name VARCHAR2(100),
+	         Date_of_Issue DATE,
+	         Name_of_Book VARCHAR2(100),
+	         Status CHAR(1) 
+	     );
+	
+	     CREATE TABLE Fine (
+	         Roll_no NUMBER,
+	         FineDate DATE,
+	         Amt NUMBER(10,2)
+	       );
+	     
+	
+	6) Insert values into Borrower table only.
+Ex : INSERT INTO Borrower VALUES (1, 'Aditya', TO_DATE('2024-09-20', 'YYYY-MM-DD'), 'The Secret', 'I')
+(Note :- Status should only contain 'I' or 'R' , 'I' means Book is Issued and 'R' means Book is returned.)
+  (Don't insert anything into fine table).
+
+	7) Minimize the SQL plus and Open the Notepad
+	
+	8) Then Create a text document and copy paste the code( which I have sent below in file named 'fine'). 
+	(Note : Save the file with the extension .sql).
+	
+	9) Now, open the SQL plus and Write this command SET SERVEROUTPUT ON;
+	
+	10) Then write the path of the file in which code is written @path_to_your_file\file_name.sql  
+	Ex: @C:\Users\Aditya\Desktop\fine.sql  
+	(Note :Don't forget the @ symbol before the path)
+	
+	11) Once the Procedure is created , Then write this command  
+	EXEC CalculateFine ( roll_no, 'name of book'); 
+	(Note : Enter the actual roll.no and name of book which you inserted into Borrower Table).
+	
+	12) You are done, now to check the output just enter the command 
+	SELECT * FROM fine;

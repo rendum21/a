@@ -1,0 +1,123 @@
+                     Lab Assignment No. 5
+
+TITLE : . Cursors: (All types: Implicit, Explicit, Cursor FOR Loop, Parameterized Cursor)
+Write a PL/SQL block of code using parameterized Cursor that will merge the data available in the newly 
+created table N_Roll_Call with the data available in the table O_Roll_Call. If the data in the first table 
+already exists in the second table then that data should be skipped.
+Note: Instructor will frame the problem statement for writing PL/SQL block using all types of Cursors in 
+line with above statement.
+
+CREATE TABLE N_Roll_Call (
+    ROLL_NO NUMBER NOT NULL,
+    NAME VARCHAR2(100),
+    CLASS VARCHAR2(50)
+);
+
+CREATE TABLE O_Roll_Call (
+    ROLL_NO NUMBER NOT NULL,
+    NAME VARCHAR2(100),
+    CLASS VARCHAR2(50)
+);
+
+
+
+SQL> DESC N_Roll_Call;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ROLL_NO                                   NOT NULL NUMBER
+ NAME                                               VARCHAR2(100)
+ CLASS                                              VARCHAR2(50)
+
+SQL> DESC O_Roll_Call;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ROLL_NO                                   NOT NULL NUMBER
+ NAME                                               VARCHAR2(100)
+ CLASS                                              VARCHAR2(50)
+
+SQL> SELECT * FROM N_Roll_Call;
+
+no rows selected
+
+SQL> INSERT INTO N_Roll_Call VALUES (1,'Aditya Doke','A');
+
+1 row created.
+
+SQL> INSERT INTO N_Roll_Call VALUES (2,'Yash Agarwal','A');
+
+1 row created.
+
+SQL> INSERT INTO N_Roll_Call VALUES (3,'Tejas Khandre','B');
+
+1 row created.
+
+SQL> INSERT INTO N_Roll_Call VALUES (4,'Rohit Awatade','C');
+
+1 row created.
+
+SQL> INSERT INTO O_Roll_Call VALUES (5,'Piyush Chavan','C');
+
+1 row created.
+
+SQL> INSERT INTO O_Roll_Call VALUES (2,'Yash Agarwal','A');
+
+1 row created.
+
+SQL> INSERT INTO O_Roll_Call VALUES (6,'Ashish Ahirekar','B');
+
+1 row created.
+
+SQL> INSERT INTO O_Roll_Call VALUES (7,'Avinash Bhosale','C');
+
+1 row created.
+
+SQL> SET SERVEROUTPUT ON;
+SQL> @C:\Users\Aditya\Desktop\cursor.sql
+Inserted: Aditya Doke into O_Roll_Call
+Skipped: Yash Agarwal (already exists in O_Roll_Call)
+Inserted: Tejas Khandre into O_Roll_Call
+Inserted: Rohit Awatade into O_Roll_Call
+
+PL/SQL procedure successfully completed.
+
+SQL> SELECT * FROM O_Roll_Call
+    ORDER BY Roll_No;
+
+   ROLL_NO
+----------
+NAME
+----------------------------------------------------------------------------------------------------
+CLASS
+--------------------------------------------------
+         1
+Aditya Doke
+A
+
+         2
+Yash Agarwal
+A
+
+         3
+Tejas Khandre
+B
+
+         4
+Rohit Awatade
+C
+
+         5
+Piyush Chavan
+C
+
+         6
+Ashish Ahirekar
+B
+
+         7
+Avinash Bhosale
+C
+
+
+7 rows selected.
+
+SQL>
